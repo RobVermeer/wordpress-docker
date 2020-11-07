@@ -1,0 +1,29 @@
+{
+  "name": "wordpress-docker",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "rollup -w -c src/build/rollup.config.js | sass --watch ./src/sass/index.scss style.css",
+    "build": "rollup -c src/build/rollup.config.js | sass ./src/sass/index.scss style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobVermeer/wordpress-docker.git"
+  },
+  "author": "Rob Vermeer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobVermeer/wordpress-docker/issues"
+  },
+  "homepage": "https://github.com/RobVermeer/wordpress-docker#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "rollup": "^2.33.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.29.0"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}
