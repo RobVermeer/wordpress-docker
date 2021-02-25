@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "rollup -w -c src/build/rollup.config.js | sass --watch ./src/sass/index.scss style.css",
-    "build": "rollup -c src/build/rollup.config.js | sass ./src/sass/index.scss style.css"
+    "dev": "rollup -w -c theme/src/build/rollup.config.js | sass --watch ./theme/src/sass/index.scss ./theme/style.css",
+    "build": "rollup -c theme/src/build/rollup.config.js | sass ./theme/src/sass/index.scss ./theme/style.css"
   },
   "repository": {
     "type": "git",

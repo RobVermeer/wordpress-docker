@@ -2,6 +2,9 @@ services:
   web:
     image: wordpress:latest
     restart: always
+    depends_on:
+      mysql:
+        condition: service_healthy
     ports:
       - 8000:80
     environment:
@@ -9,8 +12,10 @@ services:
       WORDPRESS_DB_USER: exampleuser
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
+      WORDPRESS_DEBUG: 1
     volumes:
-      - ./:/var/www/html/wp-content/themes/theme
+      - ./theme:/var/www/html/wp-content/themes/theme
+      - ./plugins:/var/www/html/wp-content/plugins
   mysql:
     image: mysql:latest
     restart: always
@@ -19,8 +24,15 @@ services:
       MYSQL_USER: exampleuser
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 1s
+      retries: 40
   adminer:
     image: adminer:latest
     restart: always
+    depends_on:
+      mysql:
+        condition: service_healthy
     ports:
       - 8080:8080
